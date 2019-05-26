@@ -14,39 +14,99 @@ class DB_mdl extends CI_Model {
     
 
     /**
-     * Funcion para consultar un usuario
-     * @param Array Arreglo con la informacion necesaria para construir una consulta sql
-     * 
-     * @return Array Con la informacion consultada en la tabla usuarios
-     */
-    public function getUsuario($arrData){
+	 * Funcion de base de datos que construye una consulta para obtener informacion de la base de datos
+	 * 
+	 * @param String Cadena que trae los campos para seleccionar en la consulta, si no se envia el parametro, se seleccionan todas las columnas de la tabla
+	 * @param Array Arreglo con todas las condiciones o filtros para realizar la consulta
+	 * @param String Cadena con los Join, Inner Join, Left Join que sean necesarios para realizar la consulta
+	 * @param String Cadena con el Limit para la cosulta
+	 * @param String Cadena para ordenar la informacion resultante de la consulta
+	 * 
+	 * @return Array Con los datos obtenidos de la consulta
+	 */
+	public function getData($strSelect=NULL, $arrWhere=NULL, $strJoin=NULL, $limit=NULL, $orderBy=NULL){
+		
+		if(empty($strSelect)){
+			$select = '*';
+		}else{
+			$select = $strSelect;
+		}
+		
+		if(empty($arrWhere)){
+			$where = "";
+		}else{
+			$where = " WHERE ";
+			$where .= implode(" AND ",$arrWhere);
+		}
+		
+		if(empty($strJoin)){
+			$join = "";
+		}else{
+			$join = $strJoin;
+		}
+		
+		if(empty($orderBy)){
+			$order = "";
+		}else{
+			$order = " ORDER BY ".$orderBy;
+		}
+		
+		$strQuery = "SELECT $select FROM $this->tabla $join $where $order $limit ";
+
+		$resp = $this->db->query($strQuery);
+		
+		$db_error = $this->db->error();
+		
+        if (($db_error['code'] != 0)) {
+            throw new Exception('Database error! Error Code [' . $db_error['code'] . '] ');
+            return false; // unreachable retrun statement !!!
+        }
         
+        if( $resp===false ){
+			return false;
+		}
+		
+		return $resp->result_array();
+		
+	}
+     
+    /**
+     * Funcion para actualizar un registro en una tabla
+     * @param Array tiene los datos que se deben actualizar en el registro
+     * @param Array tiene el nombre del campo y el valor del campo que se debe actualizar
+     */
+    public function updateRow($arrData,$where){
+		
+		$this->db->where($where['campo'],$where['valor']);
+		$bolAction = $this->db->update($this->tabla,$arrData);
+		
+		$db_error = $this->db->error();
+        if (($db_error['code'] != 0)) {
+            throw new Exception('Database error! Error Code [' . $db_error['code'] . '] ');
+            return false; // unreachable retrun statement !!!
+        }
+
+        return $bolAction;
+		
     }
 
     /**
-     * Funcion para actualizar la informacion de un usuario existente en la tabla usuarios
-     * @param Array Arreglo con la informacion necesaria para actualizar el usuario, usando el active record de CI
+     * Funcion para agregar un registro a una tabla
+     * @param Array Tiene los datos que deben ser almacenados en la tabla
      * 
-     * @return Bool Con la respuesta de la ejecucion de la actualizacion en la tabla usuarios
+     * @return Bool Con el resultado de la ejecucion del query
      */
-    public function updateUsuario(){
+    public function addRow($arrData){
 
+		$bolAction = $this->db->insert($this->tabla, $arrData);
+		
+		$db_error = $this->db->error();
+        if (($db_error['code'] != 0)) {
+            throw new Exception('Database error! Error Code [' . $db_error['code'] . '] ');
+            return false; // unreachable retrun statement !!!
+        }
+		
+		return $bolAction;
     }
-
-    /**
-     * Funcion para insertar un nuevo registro en la tabla usuarios
-     * @param Array Arreglo con la informacion necesaria para insertar un usuario, usando el active record de CI
-     * 
-     * @return Bool Con la respuesta de la ejecucion de la actualizacion en la tabla usuarios
-     */
-    public function addUsuario(){
-        
-    }
-
-    /**
-     * 
-     */
-    public function deleteUsuario(){
-
-    }
+    
 }

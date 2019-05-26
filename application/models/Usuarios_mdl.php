@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once('DB_mdl.php');
+include_once('DB_mdl.php');
 
 class Usuarios_mdl extends DB_mdl {
 
@@ -12,6 +12,9 @@ class Usuarios_mdl extends DB_mdl {
      * 
      */
 	public function index(){
+
+
+
 		$this->load->view('usuarios/index');
     }
     

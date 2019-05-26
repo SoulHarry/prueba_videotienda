@@ -1,15 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+include_once('DB_mdl.php');
 
-class Peliculas_mdl extends CI_Model {
+class Peliculas_mdl extends DB_mdl {
 
-	/**
-     * Funcion index para mostrar el login del sitio
-     * 
-     * 
-     */
-	public function index()
-	{
-		$this->load->view('usuarios/index');
+    var $tabla = 'peliculas';
+    
+	public function __constructor(){
+		parent::__constructor();
 	}
 }
