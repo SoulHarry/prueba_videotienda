@@ -19,6 +19,9 @@ class Peliculas extends CI_Controller {
      */
 	public function index()
 	{
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
 
 		$data = new stdClass();
 		$objDatos = new stdClass();
@@ -32,6 +35,10 @@ class Peliculas extends CI_Controller {
 	}
 
 	public function crear(){
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
+
 		$data = new stdClass();
 		
 		
@@ -43,6 +50,10 @@ class Peliculas extends CI_Controller {
 	}
 
 	public function editar($idPelicula=NULL){
+		
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
 		$data = new stdClass();
 		
 		if(empty($idPelicula)){
@@ -61,6 +72,10 @@ class Peliculas extends CI_Controller {
 	}
 
 	public function buscar(){
+		
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
 		$objDatos = new stdClass();
 		$data = new stdClass();
 		$arrWhere = array();
@@ -91,9 +106,17 @@ class Peliculas extends CI_Controller {
 
 	}
 
-	public function detalle($idPelicula){
+	public function detalle($idPelicula=NULL){
+		
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
 		$data = new stdClass();
 		
+		if(empty($idPelicula)){
+			redirect('Peliculas');
+		}
+
 		$arrWhere[] = " id = '{$idPelicula}'";
 		$arrPelicula = $this->Peliculas_mdl->getData(NULL,$arrWhere);
 
@@ -103,6 +126,10 @@ class Peliculas extends CI_Controller {
 	}
 
 	public function guardar(){
+		
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
 		$arrDatos = array();
 		$respuesta = new stdClass();
 
@@ -123,7 +150,9 @@ class Peliculas extends CI_Controller {
 
 	public function listarPeliculas($arrEncabezado,$arrData){
 		
-		
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
 		$strHtml = "<table class='table table-bordered'><thead><tr>";
 
 		foreach($arrEncabezado as $row){
@@ -135,11 +164,11 @@ class Peliculas extends CI_Controller {
 		foreach($arrData as $row){
 			
 			$strHtml .= '<tr>';
-			
+			$id = $row['id'];
 			$strHtml .="<td>{$row['titulo']}</td>";
 			$strHtml .="<td>{$row['anio']}</td>";
 			$strHtml .="<td>{$row['sinopsis']}</td>";
-			$strHtml .="<td align='center'><a class='fas fa-trash-alt' href='".site_url("Peliculas/eliminar/{$row['id']}")."'></a></td>";
+			$strHtml .="<td align='center'><a class='fas fa-trash-alt' onclick='fnBorrar(\"$id\")' href=''></a></td>";
 			$strHtml .="<td align='center'><a class='fas fa-eye' href='".site_url("Peliculas/detalle/{$row['id']}")."'></a></td>";
 			$strHtml .="<td align='center'><a class='fas fa-pencil-alt' href='".site_url("Peliculas/editar/{$row['id']}")."'></a></td>";
 			$strHtml .= "</tr>";
@@ -149,6 +178,26 @@ class Peliculas extends CI_Controller {
 		
 		return $strHtml;
 
+	}
+
+	public function eliminar($idPelicula=NULL){
+		if(!$this->session->has_userdata('nickname')){
+			redirect('login');
+		}
+		if(empty($idPelicula)){
+			redirect('Peliculas');
+		}
+
+		$arrWhere = array("campo"=>"id","valor"=>$idPelicula);
+		$this->Peliculas_mdl->deleteRow($arrWhere);
+
+
+		$data = new stdClass();
+
+
+		$data->menu = $this->load->view("template/menu",'',TRUE);
+		$data->contenido = $this->load->view("peliculas/index",'',TRUE);
+		$this->load->view("template/template", $data);
 	}
 
 	

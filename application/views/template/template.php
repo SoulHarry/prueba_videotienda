@@ -9,14 +9,14 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href='<?php echo base_url(); ?>assets/fontawesome/css/fontawesome.min.css' />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	
 	
 	<script>
 		var baseUrl = "<?php echo base_url(); ?>";
 		var siteUrl = "<?php echo site_url(); ?>";
 	</script>
-    <title>Document</title>
+    <title>Video Tienda</title>
 </head>
 <body>
 <?php echo $menu; ?>

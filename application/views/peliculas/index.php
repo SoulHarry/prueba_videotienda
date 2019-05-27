@@ -58,3 +58,11 @@
 <div class="container-fluid mt-3">
 	<?php echo @$resultado; ?>
 </div>
+<script type="text/javascript">
+    function fnBorrar(pelicula){
+        if(confirm("Esta seguro que desea eliminar este registo? Esta acción no se podrá deshacer")){
+            $(location).attr('href',siteUrl+'/peliculas/eliminar/'+pelicula);
+        }
+        
+    }
+</script>

@@ -34,9 +34,9 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Sinopsis <span class="asterisco">*</span></th>
+					<th>Sinopsis</th>
 					<td>
-						<textarea type="text"  name="sinopsis" id="sinopsis" class="form-control" required >
+						<textarea type="text"  name="sinopsis" id="sinopsis" class="form-control" >
                         </textarea>
 					</td>
 				</tr>

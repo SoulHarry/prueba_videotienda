@@ -108,5 +108,19 @@ class DB_mdl extends CI_Model {
 		
 		return $bolAction;
     }
-    
+	
+	
+	public function deleteRow($where){
+
+		$this->db->where($where['campo'],$where['valor']);
+		$bolAction = $this->db->delete($this->tabla);
+		
+		$db_error = $this->db->error();
+        if (($db_error['code'] != 0)) {
+            throw new Exception('Database error! Error Code [' . $db_error['code'] . '] ');
+            return false; // unreachable retrun statement !!!
+        }
+
+        return $bolAction;
+	}
 }
