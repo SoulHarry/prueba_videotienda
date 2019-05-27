@@ -55,6 +55,6 @@
 		</div>
 	</form>
 </div>
-<div class="container-fluid">
+<div class="container-fluid mt-3">
 	<?php echo @$resultado; ?>
 </div>

@@ -9,4 +9,5 @@ class Peliculas_mdl extends DB_mdl {
 	public function __constructor(){
 		parent::__constructor();
 	}
+	
 }
