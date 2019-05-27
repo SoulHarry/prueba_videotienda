@@ -9,13 +9,13 @@ Proyecto para presentación de prueba técnica integ.ro
 Construido con el framework CodeIgniter Version 3.1.10
 
 # Requisitos para el funcionamiento del sitio
-+PHP Version 7.2
-+Myslq Version 5.7.26
-+Conexion a repositorios https://use.fontawesome.com/releases/v5.8.2/css/all.css
++ PHP Version 7.2
++ Myslq Version 5.7.26
++ Conexion a repositorios https://use.fontawesome.com/releases/v5.8.2/css/all.css
 
 # Instalacion
-Clonar el repositorio https://github.com/SoulHarry/prueba_videotienda.git
-En la ruta destinada por el servidor XAMPP, WAMPP
++ Clonar el repositorio https://github.com/SoulHarry/prueba_videotienda.git
++ En la ruta destinada por el servidor XAMPP, WAMPP
 + /var/html/www/ 
 + C:/wamp/www/
 
