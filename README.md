@@ -1,23 +1,23 @@
 # prueba_videotienda
 Proyecto para presentación de prueba técnica integ.ro
 
-- Modulo Usuarios:
++ Modulo Usuarios:
     Permite la administración de usuarios que se conectan el sistema
-- Modulo peliculas:
++ Modulo peliculas:
     Permite la administracion de las diferentes peliculas almacenadas en la base de datos
 
 Construido con el framework CodeIgniter Version 3.1.10
 
 # Requisitos para el funcionamiento del sitio
-PHP Version 7.2
-Myslq Version 5.7.26
-Conexion a repositorios https://use.fontawesome.com/releases/v5.8.2/css/all.css
++PHP Version 7.2
++Myslq Version 5.7.26
++Conexion a repositorios https://use.fontawesome.com/releases/v5.8.2/css/all.css
 
 # Instalacion
 Clonar el repositorio https://github.com/SoulHarry/prueba_videotienda.git
 En la ruta destinada por el servidor XAMPP, WAMPP
-/var/html/www/ 
-C:/wamp/www/
++ /var/html/www/ 
++ C:/wamp/www/
 
 Crear una copia de la base de datos ubicada en la ruta prueba_videotienda/database/prueba_videotienda.sql
 
